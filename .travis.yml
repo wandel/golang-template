@@ -2,8 +2,13 @@ language: go
 go:
   - 1.6
 before_deploy:
-  - GOOS=windows GOARCH=386 go build -o release/example-windows-386
-  - GOOS=windows GOARCH=amd64 go build -o release/example-windows-amd64
+  - GOOS=windows GOARCH=386 go build -o release/example-windows-386.exe
+  - GOOS=windows GOARCH=amd64 go build -o release/example-windows-amd64.exe
+  - GOOS=darwin GOARCH=386 go build -o release/example-darwin-386
+  - GOOS=darwin GOARCH=amd64 go build -o release/example-darwin-amd64
+  - GOOS=linux GOARCH=arm go build -o release/example-linux-arm
+  - GOOS=linux GOARCH=386 go build -o release/example-linux-386
+  - GOOS=linux GOARCH=amd64 go build -o release/example-linux-amd64
 
 
 deploy:
@@ -11,8 +16,13 @@ deploy:
   api_key:
     secure: nhttuABVhp2zzEa8No9L1Ov6S//l5p+5eQ0lupz0DnErPTof6ryMJ/piS4uh00Bwcp2kihY1LqOFWHLGtHBlhSbFOX9M51NdzQYhWP5M9TPDsB4Ua/Wt/yWs1z5MSwVFkk4EcROz2xOQPM7SNe4hk2U2zn1MDQqjzA0cVYKKxWNLQxZxS8ePncxFmnNSlq/xvgnK32U4kwzU1sgghvmQnd3N+bbXh9bsuiqdvDILYhbci7SPtHtRz4TwVeviaw2TuhxGRitfwxp0hDrEvyaZK3CQIqKhLeI8+ijCN6N0ghTBZUL3CBNu0ldHyGKVcaP/WSQpme4jB/6SQQ5piogiT9DxkgLbuJ+A1Ul6Mg1cDz8oMDt+p5TwDb2utLl4y+OO/U1+Lo4xN5MqJou2ZICnAx/QTvUxWhgsp3LfVZtB3FRmKpB+jzodqFM/MFhaHnhTrRhUw5G2ltWu9VFgyKMnTNmPADwUMo1am5xmL+I9pEBtLlnZ1b6x88n3lhkq5831YzSQYMUEv9Brs8BD3m7EZfnyd3r5vIOH7QZKy2DotzBKzH8JVwp6jYTeKj43G6JrwNCQDnmJSksKRhYlzv3tGG1MWmzMFbHYqg4UpN5S3g3DfVSoJ6eYQYOYcxiCg5ibBCEuPO99kgbPnJj7tc6ZI8HeT6Tkfx73zIO7pC/lQKA=
   file:
-    - release/example-windows-amd64
-    - release/example-windows-386
+    - release/example-windows-amd64.exe
+    - release/example-windows-386.exe
+    - release/example-darwin-amd64
+    - release/example-darwin-386
+    - release/example-linux-amd64
+    - release/example-linux-386
+    - release/example-linux-arm
   skip_cleanup: true
   on:
     tags: true
