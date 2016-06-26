@@ -1,5 +1,6 @@
 language: go
-  - 1.5
+go:
+  - 1.6
 
 release:
   mkdir -p release
