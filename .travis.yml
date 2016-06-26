@@ -1,5 +1,6 @@
 language: go
-  - 1.6
+  - 1.5
+
 release:
   mkdir -p release
   GOOS=darwin GOARCH=386 go build -o release/example-darwin-386 w$(package)
