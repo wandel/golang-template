@@ -1,1 +1,24 @@
 language: go
+
+release:
+  mkdir -p release
+  GOOS=darwin GOARCH=386 go build -o release/example-darwin-386 w$(package)
+  GOOS=darwin GOARCH=amd64 go build -o release/example-darwin-amd64 w$(package)
+  GOOS=windows GOARCH=386 go build -o release/example-windows-386 $(package)
+  GOOS=windows GOARCH=amd64 go build -o release/example-windows-amd64 $(package)
+  GOOS=linux GOARCH=amd64 go build -o release/example-linux-amd64 $(package)
+  GOOS=linux GOARCH=386 go build -o release/example-linux-386 $(package)
+  GOOS=linux GOARCH=arm go build -o release/example-linux-arm $(package)
+
+deploy:
+  provider: releases
+  file:
+    - release/example-linux-amd64
+    - release/example-linux-386
+    - release/example-windows-amd64
+    - release/example-windows-386
+    - release/example-darwin-amd64
+    - release/example-darwin-386
+  skip_cleanup: true
+  on:
+    tags: true
