@@ -1,6 +1,6 @@
 language: go
 go:
-  - 1.6
+  - 1.x
 before_deploy:
   - GOOS=windows GOARCH=386 go build -o release/example-windows-386.exe
   - GOOS=windows GOARCH=amd64 go build -o release/example-windows-amd64.exe
